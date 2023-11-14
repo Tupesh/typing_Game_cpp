@@ -7,7 +7,23 @@ using namespace std;
 
 string masterFileName = "ListOfPlayers.txt";
 
-class master
+class userInterface{
+    public:
+    userInterface(){
+        cout<<"\t\tWelcome to the typing console"<<endl;
+        cout<<"Here you may practice typing to increase your typing speed and showoff"<<endl;
+        cout<<"Enter 1 for new user Sign-in"<<endl;
+        cout<<"Enter 2 for existing user login"<<endl;
+        cout<<"Enter 3 to check the top five typing experts and their speed"<<endl;
+        cout<<"Enter 4 to delete existing user"<<endl;
+        cout<<"Any other input will terminate the login/Sign-in interface"<<endl;
+
+    }
+};
+
+
+
+class master:public userInterface
 {
 protected:
     ofstream add;
