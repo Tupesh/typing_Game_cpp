@@ -1,0 +1,3 @@
+A basic typing speed testing code that stores the players data in file
+I have tried  do CRUD operation in it
+Rest coming soon................
