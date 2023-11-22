@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 #include <fstream>
 #include <ctime>
 
@@ -7,23 +9,53 @@ using namespace std;
 
 string masterFileName = "ListOfPlayers.txt";
 
-class userInterface{
-    public:
-    userInterface(){
-        cout<<"\t\tWelcome to the typing console"<<endl;
-        cout<<"Here you may practice typing to increase your typing speed and showoff"<<endl;
-        cout<<"Enter 1 for new user Sign-in"<<endl;
-        cout<<"Enter 2 for existing user login"<<endl;
-        cout<<"Enter 3 to check the top five typing experts and their speed"<<endl;
-        cout<<"Enter 4 to delete existing user"<<endl;
-        cout<<"Any other input will terminate the login/Sign-in interface"<<endl;
+class checkPlayer
+{
+public:
+    int userResponse()
+    {
+        int r;
+        cin >> r;
+        cin.ignore();
+        return r;
+    }
+};
+class userInterface:public checkPlayer
+{
+public:
+    userInterface()
+    {
+        cout << "\t\tWelcome to the typing console" << endl;
+        cout << "Here you may practice typing to increase your typing speed and showoff" << endl;
+        cout << "Enter 1 for new user Sign-in" << endl;
+        cout << "Enter 2 for existing user login" << endl;
+        cout << "Enter 3 to check the top five typing experts and their speed" << endl;
+        cout << "Enter 4 to delete existing user" << endl;
+        cout << "Any other input will terminate the login/Sign-in interface\n" << endl;
+        switch (userResponse())
+        {
+        case 1:
+            cout<<"Log-in console"<<endl;
 
+            break;
+        case 2:
+            cout<<"Sign-in console"<<endl;
+            break;
+        case 3:
+            cout<<"Player checking console"<<endl;
+            break;
+        case 4:
+            cout<<"Deleting user console"<<endl;
+            break;
+        
+        default:
+            exit(0);
+        }
     }
 };
 
 
-
-class master:public userInterface
+class master : public userInterface
 {
 protected:
     ofstream add;
