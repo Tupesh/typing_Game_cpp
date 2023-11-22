@@ -1,15 +1,16 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <fstream>
-#include <ctime>
+#include <string>// for using string date type and other string operations as needed
+#include <vector>//dynamic array in cpp
+#include <algorithm>//sorting vector array
+#include <fstream>//file handle
+#include <ctime>//taking system time and date
+#include <cstdlib>//contains cls command to clear the output console
 
 using namespace std;
 
 string masterFileName = "ListOfPlayers.txt";
 
-class checkPlayer
+class userInterface
 {
 public:
     int userResponse()
@@ -17,12 +18,9 @@ public:
         int r;
         cin >> r;
         cin.ignore();
+        system("cls");
         return r;
     }
-};
-class userInterface:public checkPlayer
-{
-public:
     userInterface()
     {
         cout << "\t\tWelcome to the typing console" << endl;
@@ -31,29 +29,32 @@ public:
         cout << "Enter 2 for existing user login" << endl;
         cout << "Enter 3 to check the top five typing experts and their speed" << endl;
         cout << "Enter 4 to delete existing user" << endl;
-        cout << "Any other input will terminate the login/Sign-in interface\n" << endl;
+        cout << "Any other input will terminate the login/Sign-in interface\n"
+             << endl;
         switch (userResponse())
         {
         case 1:
-            cout<<"Log-in console"<<endl;
+            cout << "Log-in console\n" << endl;
+            cout<<"At present the log-in console under construction so you will have to proceed with the functionality of signin console"<<endl;
 
             break;
         case 2:
-            cout<<"Sign-in console"<<endl;
+            cout << "Sign-in console\n" << endl;
             break;
         case 3:
-            cout<<"Player checking console"<<endl;
+            cout << "Player checking console\n" << endl;
+            cout<<"At present the checking console under construction so you will have to proceed with the functionality of signin console"<<endl;
             break;
         case 4:
-            cout<<"Deleting user console"<<endl;
+            cout << "Deleting user console\n" << endl;
+            cout<<"At present the deleting console under construction so you will have to proceed with the functionality of signin console"<<endl;
             break;
-        
+
         default:
             exit(0);
         }
     }
 };
-
 
 class master : public userInterface
 {
@@ -105,10 +106,10 @@ protected:
     void input()
     {
         cout << "Enter your name: ";
-        getline(cin, Name);
+        cin>>Name;
         cout << "What would you like your nickname to be in the game? ";
-        getline(cin, nickName);
-        // cin.ignore();
+        cin>>nickName;
+        cin.ignore();
     }
 
     string createdDate()
@@ -152,7 +153,7 @@ public:
     double type()
     {
 
-        cout << "Enter your name. I'll test your timing:\n";
+        cout << "Enter a sentence. I'll test your timing:\n";
         time_t startTime = currentTime();
         getline(cin, enter);
         cout << " hey " << endl;
@@ -168,6 +169,7 @@ public:
         double timeTaken = type();
         int l = enter.length();
         double speed = (double)l / timeTaken;
+        cout << "You have typed " << l << " characters." << endl;
         cout << "Your speed is " << speed << " characters per second" << endl;
         ofstream addingSpeed(fileName, ios::app);
         addingSpeed << speed;
