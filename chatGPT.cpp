@@ -16,7 +16,7 @@ class filing
 public:
     filing()
     {
-        ofstream banaune(masterFileName, ios::app);
+        ofstream banaune(masterFileName, ios::app);//opening file and creates one if not there
     }
 };
 
@@ -68,11 +68,11 @@ public:
             double speed = (double)l / timeTaken;
             cout << "Your speed is " << speed << " characters per second" << endl;
             ofstream addingSpeed(masterFileName, ios::app);
-            addingSpeed << name << '\t' << speed << endl;
+            addingSpeed << name << '\t' << speed << endl;//writing name and their typing speed into file
             addingSpeed.close();
         }
         else
-            cout << "Zero Value Error!";
+            cout << "Zero Value Error!";//cause no letter to count or time taken is 0 sec
     }
 };
 
