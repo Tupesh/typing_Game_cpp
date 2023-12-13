@@ -1,10 +1,10 @@
 #include <iostream>
-#include <string>// for using string date type and other string operations as needed
-#include <vector>//dynamic array in cpp
-#include <algorithm>//sorting vector array
-#include <fstream>//file handle
-#include <ctime>//taking system time and date
-#include <cstdlib>//contains cls command to clear the output console
+#include <string>    // for using string date type and other string operations as needed
+#include <vector>    //dynamic array in cpp
+#include <algorithm> //sorting vector array
+#include <fstream>   //file handle
+#include <ctime>     //taking system time and date
+#include <cstdlib>   //contains cls command to clear the output console
 
 using namespace std;
 
@@ -34,20 +34,24 @@ public:
         switch (userResponse())
         {
         case 1:
-            cout << "Log-in console\n" << endl;
-            cout<<"At present the log-in console under construction so you will have to proceed with the functionality of signin console"<<endl;
+            cout << "Log-in console\n"
+                 << endl;
+            cout << "At present the log-in console under construction so you will have to proceed with the functionality of signin console" << endl;
 
             break;
         case 2:
-            cout << "Sign-in console\n" << endl;
+            cout << "Sign-in console\n"
+                 << endl;
             break;
         case 3:
-            cout << "Player checking console\n" << endl;
-            cout<<"At present the checking console under construction so you will have to proceed with the functionality of signin console"<<endl;
+            cout << "Player checking console\n"
+                 << endl;
+            cout << "At present the checking console under construction so you will have to proceed with the functionality of signin console" << endl;
             break;
         case 4:
-            cout << "Deleting user console\n" << endl;
-            cout<<"At present the deleting console under construction so you will have to proceed with the functionality of signin console"<<endl;
+            cout << "Deleting user console\n"
+                 << endl;
+            cout << "At present the deleting console under construction so you will have to proceed with the functionality of signin console" << endl;
             break;
 
         default:
@@ -106,9 +110,9 @@ protected:
     void input()
     {
         cout << "Enter your name: ";
-        cin>>Name;
+        cin >> Name;
         cout << "What would you like your nickname to be in the game? ";
-        cin>>nickName;
+        cin >> nickName;
         cin.ignore();
     }
 
@@ -167,13 +171,19 @@ public:
     void WPM()
     {
         double timeTaken = type();
-        int l = enter.length();
-        double speed = (double)l / timeTaken;
-        cout << "You have typed " << l << " characters." << endl;
-        cout << "Your speed is " << speed << " characters per second" << endl;
-        ofstream addingSpeed(fileName, ios::app);
-        addingSpeed << speed;
-        addingSpeed.close();
+        if (timeTaken == 0 || enter.length() == 0)
+            cout << "Error!";
+        else
+        {
+
+            int l = enter.length();
+            double speed = (double)l / timeTaken;
+            cout << "You have typed " << l << " characters." << endl;
+            cout << "Your speed is " << speed << " characters per second" << endl;
+            ofstream addingSpeed(fileName, ios::app);
+            addingSpeed << speed;
+            addingSpeed.close();
+        }
     }
 
     typingGame() {}
