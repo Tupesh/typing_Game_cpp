@@ -78,12 +78,15 @@ public:
 
 int main()
 {
+    int r;
     cout << "\t\tWelcome to the typing console" << endl;
     cout << "Here you may practice typing to increase your typing speed and showoff" << endl;
     cout << "Enter 1 for new Game" << endl;
     cout << "Enter 2 to check the top five typing experts and their speed" << endl;
     cout << "Enter 3 for deleting existing player" << endl;
     cout << "Any other input will terminate the interface" << endl;
+    cin>>r;
+    cin.ignore();
     cout << endl;
     typingGame t1;
     t1.WPM();
