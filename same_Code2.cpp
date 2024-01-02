@@ -86,8 +86,11 @@ int main()
     cout << "Enter 3 for deleting existing player" << endl;
     cout << "Any other input will terminate the interface" << endl;
     cin>>r;
-    cin.ignore();
     cout << endl;
+    cin.ignore();
+    if (r!=1 && r!=2 &&r!=3 ){
+        return 1;
+    }
     typingGame t1;
     t1.WPM();
 }
