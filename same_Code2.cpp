@@ -76,6 +76,64 @@ public:
     }
 };
 
+class fileData:public typingGame
+{
+public:
+    string nameInFile;
+    double speed;
+    ifstream showing;
+    vector<pair<string, double>> data;
+
+    fileData()
+    {
+        showing.open(masterFileName);
+    }
+
+    void display()
+    {
+        while (showing >> nameInFile >> speed)
+        {
+            cout << "Name = " << nameInFile << '\t' << "Speed = " << speed << endl;
+            data.push_back(make_pair(nameInFile, speed));
+        }
+    }
+
+    void sortList()
+    {
+        // Sort the vector of pairs based on the second element (speed) in descending order
+        sort(data.begin(), data.end(), [](const auto &a, const auto &b) {
+            return a.second > b.second;
+        });
+    }
+
+    void displaySorted()
+    {
+        // Display the sorted list
+        for (const auto &pair : data)
+        {
+            cout << "Name = " << pair.first << '\t' << "Speed = " << pair.second << endl;
+        }
+    }
+    void fileRewrite(){
+        ofstream rewriting;
+        rewriting.open(masterFileName);
+        for (const auto &pair : data)
+        {
+            rewriting << pair.first << ' ' << pair.second << endl;
+        }
+
+        // Close the file after rewriting
+        rewriting.close();
+
+    }
+
+    ~fileData()
+    {
+        showing.close();
+    }
+};
+
+
 int main()
 {
     int r;
@@ -88,9 +146,14 @@ int main()
     cin>>r;
     cout << endl;
     cin.ignore();
-    if (r!=1 && r!=2 &&r!=3 ){
-        return 1;
+    if (r==1){
+        typingGame t1;
+        t1.WPM();
     }
-    typingGame t1;
-    t1.WPM();
+    else if (r==2){
+        fileData fd;
+        fd.fileRewrite();
+        fd.sortList();
+
+    }
 }

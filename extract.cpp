@@ -1,32 +1,65 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
 string masterFileName = "playersData.txt";
-class data
+
+class fileData
 {
-    public:
-    string details;
+public:
+    string name;
+    double speed;
     ifstream showing;
-    
-    data(){
+    vector<pair<string, double>> data;
+
+    fileData()
+    {
         showing.open(masterFileName);
     }
 
-    void display(){
-        if (!showing.is_open())
+    void display()
+    {
+        while (showing >> name >> speed)
         {
-            cerr << "Error opening file for reading." << endl;
-            return;
+            cout << "Name = " << name << '\t' << "Speed = " << speed << endl;
+            data.push_back(make_pair(name, speed));
         }
-
-        while(getline(showing,details))
-        cout<<details<<endl;
     }
 
-    ~data()
+    void sortList()
+    {
+        // Sort the vector of pairs based on the second element (speed) in descending order
+        sort(data.begin(), data.end(), [](const auto &a, const auto &b) {
+            return a.second > b.second;
+        });
+    }
+
+    void displaySorted()
+    {
+        // Display the sorted list
+        for (const auto &pair : data)
+        {
+            cout << "Name = " << pair.first << '\t' << "Speed = " << pair.second << endl;
+        }
+    }
+    void fileRewrite(){
+        ofstream rewriting;
+        rewriting.open(masterFileName);
+        for (const auto &pair : data)
+        {
+            rewriting << pair.first << ' ' << pair.second << endl;
+        }
+
+        // Close the file after rewriting
+        rewriting.close();
+
+    }
+
+    ~fileData()
     {
         showing.close();
     }
@@ -34,31 +67,11 @@ class data
 
 int main()
 {
-    data d;
+    fileData d;
     d.display();
+    d.sortList();
+    cout << "\nSorted List:\n";
+    d.displaySorted();
+    d.fileRewrite();
     return 0;
 }
-
-// #include <iostream>
-// #include <fstream>
-
-// int main() {
-//     // Input mode
-//     std::ifstream inputFile("playersData.txt", std::ios::in);
-
-//     if (!inputFile.is_open()) {
-//         std::cerr << "Error opening file for reading." << std::endl;
-//         return 1;
-//     }
-
-//     // Read and print integers from the file
-//     int intValue;
-
-//     while (inputFile >> intValue) {
-//         std::cout << "Read from file: " << intValue << std::endl;
-//     }
-
-//     inputFile.close(); // Close the file
-
-//     return 0;
-// }
