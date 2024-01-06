@@ -1,9 +1,10 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <ctime>
-#include <algorithm>
-#include <vector>
+#include <bits/stdc++.h>
+// #include <iostream>
+// #include <string>
+// #include <fstream>
+// #include <ctime>
+// #include <algorithm>
+// #include <vector>
 
 using namespace std;
 
@@ -16,6 +17,8 @@ private:
     char name[10];
     string enter;
     int l;
+    vector<pair<string, double>> data;
+
     time_t currentTime()
     {
         return time(nullptr);
@@ -24,11 +27,20 @@ private:
 public:
     TypingGame()
     {
+
+    }
+    ~TypingGame()
+    {
+        
+        
+
+    }
+    void getData()
+    {
         cout << "Enter your name: ";
         cin >> name;
         cin.ignore();
     }
-
     double type()
     {
         cout << "\nEnter a sentence. I'll test your timing:\n";
@@ -57,6 +69,8 @@ public:
         }
         else
             cout << "Zero Value Error!";
+        getchar();
+        system("cls");
     }
 
     void displayTopFive()
@@ -64,7 +78,6 @@ public:
         ifstream showing(masterFileName);
         string nameInFile;
         double speed;
-        vector<pair<string, double>> data;
 
         while (showing >> nameInFile >> speed)
         {
@@ -74,8 +87,6 @@ public:
 
         sort(data.begin(), data.end(), [](const auto &a, const auto &b)
              { return a.second > b.second; });
-
-        
 
         cout << "\nTop Five Typing Experts:\n";
         for (size_t i = 0; i < min(data.size(), static_cast<size_t>(5)); ++i)
@@ -123,6 +134,7 @@ int main()
         switch (choice)
         {
         case 1:
+            typingGame.getData();
             typingGame.WPM();
             break;
         case 2:
@@ -133,9 +145,8 @@ int main()
             break;
         default:
             cout << "Terminating the interface.\n";
-            break;
+            return 0;
         }
-    cout<<"\n\n\n\n";
+        cout << "\n\n\n\n";
     }
-    return 0;
 }
