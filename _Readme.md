@@ -1,6 +1,7 @@
 # Typing Game Console Application
 
-This console application is designed for a typing game that measures the typing speed of players and maintains a leaderboard.
+This console application is designed for a typing game that measures the typing speed of 
+players and maintains a leaderboard.
 
 ## Features
 
@@ -14,4 +15,6 @@ This console application is designed for a typing game that measures the typing 
 
 ## Copyright & Contact
 
-© 2024 Just Another Human!! | [tupesh.com.np] | [tupeshghimire@gmail.com]
+© 2024 Just Another Human!!
+tupesh.com.np
+tupeshghimire@gmail.com
