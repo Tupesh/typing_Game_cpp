@@ -1,10 +1,10 @@
-#include <bits/stdc++.h>
-// #include <iostream>
-// #include <string>
-// #include <fstream>
-// #include <ctime>
-// #include <algorithm>
-// #include <vector>
+// #include <bits/stdc++.h> // This library increases compile time
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <ctime>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -27,13 +27,9 @@ private:
 public:
     TypingGame()
     {
-
     }
     ~TypingGame()
     {
-        
-        
-
     }
     void getData()
     {
@@ -70,14 +66,14 @@ public:
         else
             cout << "Zero Value Error!";
         getchar();
-        system("cls");
     }
 
-    void displayTopFive()
+    void sortingPair()
     {
         ifstream showing(masterFileName);
         string nameInFile;
         double speed;
+        data.clear();
 
         while (showing >> nameInFile >> speed)
         {
@@ -87,40 +83,94 @@ public:
 
         sort(data.begin(), data.end(), [](const auto &a, const auto &b)
              { return a.second > b.second; });
+        showing.close();
+    }
+    void displayTopFive()
+    {
+        sortingPair();
 
         cout << "\nTop Five Typing Experts:\n";
         for (size_t i = 0; i < min(data.size(), static_cast<size_t>(5)); ++i)
         {
             cout << "Name = " << data[i].first << '\t' << "Speed = " << data[i].second << endl;
         }
-
-        showing.close();
     }
 
-    void deletePlayer()
-    {
-        string password;
+    
+    
+    void deletePlayer() {
+        string password, dName;
+        cout << "Enter the player's name to delete: ";
+        cin >> dName;
         cout << "Enter the deletion password: ";
         cin >> password;
 
-        if (password == deletingPass)
-        {
+        if (password == deletingPass) {
             cout << "Password correct. Deleting player data...\n";
-            // Implement deletion logic here
-        }
-        else
-        {
+
+            // Read existing data into a vector
+            sortingPair();
+
+            // Exclude the player to be deleted
+            data.erase(remove_if(data.begin(), data.end(),
+                                 [dName](const auto& entry) { return entry.first == dName; }),
+                       data.end());
+
+            // Write the updated vector back to the file
+            ofstream deleting(masterFileName, ios::out);
+            for (const auto& entry : data) {
+                deleting << entry.first << '\t' << entry.second << endl;
+            }
+        } else {
             cout << "Incorrect password. Deletion failed.\n";
         }
     }
+    
+    
+    
+    
+    
+    // void deletePlayer()
+    // {
+    //     string password, dName;
+    //     cout << "Enter the player's name to delete: ";
+    //     cin >> dName;
+    //     cout << "Enter the deletion password: ";
+    //     cin >> password;
+
+    //     if (password == deletingPass)
+    //     {
+    //         cout << "Password correct. Deleting player data...\n";
+    //         // Implement deletion logic here
+    //         ofstream deleting(masterFileName, ios::in);
+    //         sortingPair();
+    //         for (size_t i = 0; i < sizeof(data); ++i)
+    //         {
+    //             if (dName == data[i].first)
+    //             {
+    //                 continue;
+    //             }
+    //             deleting << data[i].first << '\t' << data[i].second << endl;
+    //             // if (dName == entry.first)
+    //             // continue;
+    //             // deleting << entry.first << '\t' << entry.second << endl;
+    //         }
+    //         // deleting.close();
+    //     }
+    //     else
+    //     {
+    //         cout << "Incorrect password. Deletion failed.\n";
+    //     }
+    // }
 };
 
 int main()
 {
     int choice;
+    TypingGame typingGame;
+    int t=1;
     while (true)
     {
-        TypingGame typingGame;
         cout << "\t\tWelcome to the typing console" << endl;
         cout << "Here you may practice typing to increase your typing speed and showoff" << endl;
         cout << "Enter 1 for new Game" << endl;
@@ -148,5 +198,6 @@ int main()
             return 0;
         }
         cout << "\n\n\n\n";
+        // system("cls");
     }
 }
