@@ -7,7 +7,7 @@
 
 using namespace std;
 
-string masterFileName = "playersData.txt";
+string masterFileName = "playersData.bin";
 string deletingPass = "SuperSecretPassword@123";
 string emptyMessage = "At the moment database is empty";
 
