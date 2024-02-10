@@ -27,9 +27,9 @@ private:
 public:
     TypingGame()
     {
-        cout << "\t\t\tWelcome to the typing console beta version" << endl;
-        cout << "\t\tHere you may practice typing to increase your typing speed" << endl;
-        cout << "\tThis game is in it's beta stage so accuracy isn't taken into consideration" << endl;
+        cout << "\n\n\t\t\tWelcome to the typing console beta version" << endl;
+        cout << "\n\t\tHere you may practice typing to increase your typing speed" << endl;
+        cout << "\n\tThis game is in it's beta stage so accuracy isn't taken into consideration\n" << endl;
     }
     ~TypingGame()
     {
@@ -45,13 +45,13 @@ public:
 
     double type()
     {
-        cout << "\nEnter a sentence. I'll test your timing:\n";
+        cout << "\nType anything. Your test begins now:\n";
         time_t startTime = currentTime();
         getline(cin, enter);
         time_t endTime = currentTime();
         l = enter.length();
         double timeTaken = difftime(endTime, startTime);
-        cout << "It took you " << timeTaken << " seconds to type that much" << endl;
+        cout << "It took you " << timeTaken << " seconds to complete the test." << endl;
         cout << "You have typed " << l << " characters." << endl;
 
         return timeTaken;
@@ -263,17 +263,17 @@ int main()
 {
     int choice;
     TypingGame typingGame;
-    int t = 1;
+    //int t = 1;
     while (true)
     {
 
-        cout << "Enter 1 for new Game" << endl;
-        cout << "Enter 2 to check the top five typing experts and their speed" << endl;
-        cout << "Enter 3 for deleting existing player" << endl;
-        cout << "Enter 4 for checking specifice player's speed" << endl;
-        cout << "Enter 5 to view entire player list" << endl;
-        cout << "Any other input will terminate the interface" << endl;
-
+        cout << "1. Start new game" << endl;
+        cout << "2. Check top players" << endl;
+        cout << "3. Delete existing player" << endl;
+        cout << "4. Check a player's speed" << endl;
+        cout << "5. View players list\n" << endl;
+        cout << "Any other input will terminate the interface\n" << endl;
+        cout << "Enter your choice: " ;
         cin >> choice;
         cin.ignore();
 
