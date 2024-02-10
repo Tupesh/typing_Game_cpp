@@ -8,7 +8,7 @@
 using namespace std;
 
 string masterFileName = "playersData.bin";
-string deletingPass = "SuperSecretPassword@123";
+string pass = "Password@123";
 string emptyMessage = "At the moment database is empty";
 
 class TypingGame
@@ -185,7 +185,7 @@ public:
             cout << "Enter the deletion password: ";
             cin >> password;
 
-            if (password == deletingPass)
+            if (password == pass)
             {
                 cout << "Password correct. Deleting player data...\n";
 
