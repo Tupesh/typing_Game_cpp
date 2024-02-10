@@ -185,7 +185,7 @@ public:
             cout << "Enter the deletion password: ";
             cin >> password;
 
-            if (password == pass)
+            if (password == password)
             {
                 cout << "Password correct. Deleting player data...\n";
 
